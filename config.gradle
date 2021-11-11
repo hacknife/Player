@@ -1,0 +1,148 @@
+ext {
+    buidConfig = [
+            'compileSdkVersion': 28,
+            'targetSdkVersion' : 28,
+            'minSdkVersion'    : 24,
+            'versionCode'      : getVersionCode(),
+            'versionName'      : getVersionName(),
+            'buildToolsVersion': '28.0.3'
+    ]
+    versions = [
+            'kotlin'                 : '1.3.72',
+            'kotlinCoroutines'       : '1.4.1',
+            'gradle'                 : '3.6.3',
+            'androidx'               : [
+                    'appcompat'          : '1.1.0',
+                    'coreKtx'            : '1.2.0',
+                    'constraintlayout'   : '1.1.3',
+                    'recyclerview'       : '1.2.0-alpha03',
+                    'annotation'         : '1.1.0',
+                    'lifecycleExtensions': '2.2.0',
+                    'lifecycleKapt'      : '2.2.0',
+                    'databindingKapt'    : '3.5.0',
+            ],
+            hacknife                 : [
+                    'immersive'      : '1.2.5',
+                    'skinswitcher'   : '1.7.0',
+                    'onpermission'   : '1.1.6',
+                    "onlite"         : '1.5.4',
+                    'indicator'      : '1.0.7',
+                    'imagepicker'    : '1.3.1',
+                    'coolprogress'   : '1.1.3',
+                    'iplayer'        : '1.2.8',
+                    'slidingactivity': '1.0.5',
+                    'ijkplayer'      : '0.8.8',
+                    'pdfviewer'      : '1.0.3',
+                    'loading'        : '1.0.2',
+
+            ],
+            autosize                 : '1.2.1',
+            logger                   : '2.2.0',
+            rx                       : [
+                    'rxjava'   : '2.1.12',
+                    'rxandroid': '2.0.2',
+            ],
+            'retrofit'               : '2.4.0',
+            'okhttp'                 : '3.10.0',
+            'glide'                  : '4.11.0',
+            'lottie'                 : '1.5.3',
+            'circleview'             : '3.1.0',
+            'cardview'               : '1.0.0',
+            'refresh'                : '2.0.1',
+            'com.hacknife.videocache': '2.7.1',
+            'jncryptor'              : '1.2.0',
+            'verticalseekbar'        : '1.0.0',
+            'libaums'                : '0.7.6',
+            'pop'                    : '2.2.11',
+            'ffmpeg'                 : '4.9.0',
+
+    ]
+    dependents = [
+            'gradle'                 : "com.android.tools.build:gradle:${versions.gradle}",
+            'kotlin'                 : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}",
+            'kotlinReflect'          : "org.jetbrains.kotlin:kotlin-reflect:${versions.kotlin}",
+            'kotlinPlugin'           : "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}",
+            'kotlinCoroutinesCore'   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.kotlinCoroutines}",
+            'kotlinCoroutinesAndroid': "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.kotlinCoroutines}",
+            'androidx'               : [
+                    'appcompat'          : "androidx.appcompat:appcompat:${versions.androidx.appcompat}",
+                    'coreKtx'            : "androidx.core:core-ktx:${versions.androidx.coreKtx}",
+                    'constraintlayout'   : "androidx.constraintlayout:constraintlayout:${versions.androidx.constraintlayout}",
+                    'recyclerview'       : "androidx.recyclerview:recyclerview:${versions.androidx.recyclerview}",
+                    'annotation'         : "androidx.annotation:annotation:${versions.androidx.annotation}",
+                    'lifecycleExtensions': "androidx.lifecycle:lifecycle-extensions:${versions.androidx.lifecycleExtensions}",
+                    'lifecycleKapt'      : "android.arch.lifecycle:compiler:${versions.androidx.lifecycleKapt}",
+                    'databindingKapt'    : "com.android.databinding:compiler:${versions.androidx.databindingKapt}",
+                    'cardview'           : "androidx.cardview:cardview:${versions.cardview}",
+            ],
+            'hacknife'               : [
+                    'immersive'           : "com.hacknife:immersive:${versions.hacknife.immersive}",
+                    'skinswitcher'        : "com.hacknife.skinswitcher:skinswitcher-core:${versions.hacknife.skinswitcher}",
+                    'skinswitcherCompiler': "com.hacknife.skinswitcher:skinswitcher-compiler:${versions.hacknife.skinswitcher}",
+                    'onpermission'        : "com.hacknife:onpermission:${versions.hacknife.onpermission}",
+                    'onlite'              : "com.hacknife.onlite:onlite:${versions.hacknife.onlite}",
+                    'onliteCompiler'      : "com.hacknife.onlite:onlite-compiler:${versions.hacknife.onlite}",
+                    'indicator'           : "com.hacknife:indicator:${versions.hacknife.indicator}",
+                    'imagepicker'         : "com.hacknife:imagepicker:${versions.hacknife.imagepicker}",
+                    'coolprogress'        : "com.hacknife:coolprogress:${versions.hacknife.coolprogress}",
+                    'iplayer'             : "com.hacknife:iplayer:${versions.hacknife.iplayer}",
+                    'slidingactivity'     : "com.hacknife:slidingactivity:${versions.hacknife.slidingactivity}",
+                    'ijkplayerArmv7a'     : "com.hacknife.ijkplayer:ijkplayer-armv7a:${versions.hacknife.ijkplayer}",
+                    'ijkplayerX64'        : "com.hacknife.ijkplayer:ijkplayer-x86_64:${versions.hacknife.ijkplayer}",
+                    'ijkplayerJava'       : "com.hacknife.ijkplayer:ijkplayer-java:${versions.hacknife.ijkplayer}",
+                    'pdfViewer'           : "com.hacknife.pdfviewer:viewer:${versions.hacknife.pdfviewer}",
+                    'pdfMupdf'            : "com.hacknife.pdfviewer:core-mupdf:${versions.hacknife.pdfviewer}",
+                    'pdfIum'              : "com.hacknife.pdfviewer:core-pdfium:${versions.hacknife.pdfviewer}",
+                    'core'                : "com.hacknife.pdfviewer:core:${versions.hacknife.pdfviewer}",
+                    'loading'             : "com.hacknife:loading:${versions.hacknife.loading}",
+            ],
+            'autosize'               : "me.jessyan:autosize:${versions.autosize}",
+            'logger'                 : "com.orhanobut:logger:${versions.logger}",
+            'retrofit'               : [
+                    'retrofit'        : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+                    'converterGson'   : "com.squareup.retrofit2:converter-gson:${versions.retrofit}",
+                    'converterScalars': "com.squareup.retrofit2:converter-scalars:${versions.retrofit}",
+                    'adapterRxjava2'  : "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}",
+            ],
+            'okhttp'                 : [
+                    'okhttp'            : "com.squareup.okhttp3:okhttp:${versions.okhttp}",
+                    'loggingInterceptor': "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}",
+            ],
+            'rx'                     : [
+                    'rxjava'   : "io.reactivex.rxjava2:rxjava:${versions.rx.rxjava}",
+                    'rxandroid': "io.reactivex.rxjava2:rxandroid:${versions.rx.rxandroid}",
+            ],
+            'glide'                  : [
+                    'glide'   : "com.github.bumptech.glide:glide:${versions.glide}",
+                    'okhttp'  : "com.github.bumptech.glide:okhttp3-integration:${versions.glide}",
+                    'compiler': "com.github.bumptech.glide:compiler:${versions.glide}",
+            ],
+            'lottie'                 : "com.airbnb.android:lottie:${versions.lottie}",
+            'circleview'             : "default_dialog_player_mode_volume_desc.hdodenhof:circleimageview:${versions.circleview}",
+
+            'refresh'                : [
+                    'kernel': "com.scwang.smart:refresh-layout-kernel:${versions.refresh}",
+                    'header': "com.scwang.smart:refresh-header-classics:${versions.refresh}",
+                    'footer': "com.scwang.smart:refresh-footer-classics:${versions.refresh}",
+            ],
+            'com.hacknife.videocache': "com.danikula:com.hacknife.videocache:${versions.videocache}",
+            'jncryptor'              : "org.cryptonode.jncryptor:jncryptor:${versions.jncryptor}",
+            'libaums'                : "me.jahnen:libaums:${versions.libaums}",
+            'pop'                    : "com.github.razerdp:BasePopup:${versions.pop}",
+            'verticalseekbar'        : "com.h6ah4i.android.widget.verticalseekbar:verticalseekbar:${versions.verticalseekbar}",
+            'ffmpeg'                 : "com.github.microshow:RxFFmpeg:${versions.ffmpeg}"
+
+    ]
+}
+
+def getVersionName() {
+    def date = new Date()
+    String time = date.format('yyMMdd')
+    String version = "1.2.8." + String.valueOf(getVersionCode()) + time
+    return version
+}
+
+def getVersionCode() {
+    Integer code = 18
+    return code
+}

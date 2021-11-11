@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DE2B2B2B"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.hacknife.player.DefaultPlayer
+        android:id="@+id/player"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:display="centerCrop"
+        app:enableEnlarge="true"
+        app:enableWindow="true" />
+
+    <Button
+        android:layout_marginTop="40dp"
+        android:text="窗口"
+        android:onClick="onWindowClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_marginTop="40dp"
+        android:text="全屏"
+        android:onClick="onFullClick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

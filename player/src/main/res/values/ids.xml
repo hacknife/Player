@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="playerSurface" type="id" />
+    <item name="tvTitle" type="id" />
+    <item name="ivBack" type="id" />
+    <item name="tvCurrent" type="id" />
+    <item name="tvTotal" type="id" />
+    <item name="sbProgress" type="id" />
+    <item name="titleBar" type="id" />
+    <item name="bottomBar" type="id" />
+    <item name="ivPlay" type="id" />
+    <item name="ivLoading" type="id" />
+    <item name="view_delay" type="id" />
+    <item name="ivMode" type="id" />
+
+    <item name="progressbar" type="id" />
+    <item name="ivZoom" type="id" />
+    <item name="player_zoom_full" type="id" />
+    <item name="ivThumbnail" type="id" />
+    <item name="ivSetting" type="id" />
+    <item name="ivWindow" type="id" />
+    <item name="player_zoom_window" type="id" />
+    <item name="ivError" type="id" />
+    <item name="tvError" type="id" />
+    <item name="ivRotate" type="id" />
+</resources>
