@@ -421,70 +421,70 @@ class DefaultPlayer(context: Context, attrs: AttributeSet?) : IPlayer(context, a
             it.setSelected(R.id.tvSpeed30, getSpeed() == 3.0f)
 
 
-            it.setClick(R.id.tvRotation0) {
+            it.setTouch(R.id.tvRotation0) {
                 setDisplayRotation(0f)
                 onDialogSettingShow()
             }
-            it.setClick(R.id.tvRotation90) {
+            it.setTouch(R.id.tvRotation90) {
                 setDisplayRotation(90f)
                 onDialogSettingShow()
             }
-            it.setClick(R.id.tvRotation180) {
-                setDisplayRotation(18f)
-                onDialogSettingShow()
-            }
-            it.setClick(R.id.tvRotation270) {
-                setDisplayRotation(270f)
-                onDialogSettingShow()
-            }
-            it.setClick(R.id.ivRotation0) {
-                setDisplayRotation(0f)
-                onDialogSettingShow()
-            }
-            it.setClick(R.id.ivRotation90) {
-                setDisplayRotation(90f)
-                onDialogSettingShow()
-            }
-            it.setClick(R.id.ivRotation180) {
+            it.setTouch(R.id.tvRotation180) {
                 setDisplayRotation(180f)
                 onDialogSettingShow()
             }
-            it.setClick(R.id.ivRotation270) {
+            it.setTouch(R.id.tvRotation270) {
+                setDisplayRotation(270f)
+                onDialogSettingShow()
+            }
+            it.setTouch(R.id.ivRotation0) {
+                setDisplayRotation(0f)
+                onDialogSettingShow()
+            }
+            it.setTouch(R.id.ivRotation90) {
+                setDisplayRotation(90f)
+                onDialogSettingShow()
+            }
+            it.setTouch(R.id.ivRotation180) {
+                setDisplayRotation(180f)
+                onDialogSettingShow()
+            }
+            it.setTouch(R.id.ivRotation270) {
                 setDisplayRotation(270f)
                 onDialogSettingShow()
             }
 
 
-            it.setClick(R.id.tvSizeOrigin) {
+            it.setTouch(R.id.tvSizeOrigin) {
                 setDisplayType(SurfaceType.SCREEN_TYPE_ORIGINAL)
                 onDialogSettingShow()
             }
-            it.setClick(R.id.tvSizeFit) {
+            it.setTouch(R.id.tvSizeFit) {
                 setDisplayType(SurfaceType.SCREEN_TYPE_FIT_XY)
                 onDialogSettingShow()
             }
-            it.setClick(R.id.tvSizeCrop) {
+            it.setTouch(R.id.tvSizeCrop) {
                 setDisplayType(SurfaceType.SCREEN_TYPE_CENTER_CROP)
                 onDialogSettingShow()
             }
-            it.setClick(R.id.tvSizeNormal) {
+            it.setTouch(R.id.tvSizeNormal) {
                 setDisplayType(SurfaceType.SCREEN_TYPE_NORMAL)
                 onDialogSettingShow()
             }
 
-            it.setClick(R.id.tvSpeed05) {
+            it.setTouch(R.id.tvSpeed05) {
                 setSpeed(0.5f)
                 onDialogSettingShow()
             }
-            it.setClick(R.id.tvSpeed10) {
+            it.setTouch(R.id.tvSpeed10) {
                 setSpeed(1f)
                 onDialogSettingShow()
             }
-            it.setClick(R.id.tvSpeed20) {
+            it.setTouch(R.id.tvSpeed20) {
                 setSpeed(2f)
                 onDialogSettingShow()
             }
-            it.setClick(R.id.tvSpeed30) {
+            it.setTouch(R.id.tvSpeed30) {
                 setSpeed(3f)
                 onDialogSettingShow()
             }

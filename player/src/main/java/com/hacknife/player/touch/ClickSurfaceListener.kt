@@ -27,8 +27,9 @@ class ClickSurfaceListener(private val uiCallback: UiCallback) : ClickPlayerList
 
     override fun onClick(it: View) {
         if (!uiCallback.isUsed()) return
-         if (uiCallback.state() == State.PLAYER_STATE_PLAYING) {
+        if (uiCallback.state() == State.PLAYER_STATE_PLAYING) {
             if (!togglePlaying) {
+                uiCallback.onDialogSettingDismiss()
                 uiCallback.onStateChangeToPlayingToggle()
                 intervalTimer.interval(DURATION_SEEK_BAR) {
                     uiCallback.view().setText(R.id.tvCurrent, uiCallback.getCurDuration().toTime())
@@ -51,6 +52,7 @@ class ClickSurfaceListener(private val uiCallback: UiCallback) : ClickPlayerList
         }
         if (uiCallback.state() == State.PLAYER_STATE_PAUSE) {
             if (!togglePause) {
+                uiCallback.onDialogSettingDismiss()
                 togglePause = true
                 uiCallback.onStateChangeToPauseToggle()
                 intervalTimer.interval(DURATION_SEEK_BAR) {

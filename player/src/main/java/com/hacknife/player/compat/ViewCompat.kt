@@ -75,6 +75,14 @@ fun View.setClick(id: Int, call: () -> Unit) {
     findViewById<View>(id)?.setOnClickListener { call.invoke() }
 }
 
+fun View.setTouch(id: Int, call: () -> Unit) {
+    findViewById<View>(id)?.setOnTouchListener { v, event ->
+        if (event.action == MotionEvent.ACTION_DOWN)
+            call.invoke()
+        false
+    }
+}
+
 fun View.delay(time: Long, call: (() -> Unit)) {
     this.setTag(R.id.view_delay, System.currentTimeMillis() + time)
     this.postDelayed({
