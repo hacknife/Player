@@ -348,7 +348,6 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
     }
 
     private fun stateChangTo(value: State) {
-        Log.v("dzq", "$value")
         when (value) {
             State.PLAYER_STATE_NORMAL -> onStateChangeToNormal(mode.get())
             State.PLAYER_STATE_PREPARING -> onStateChangeToPreparing(mode.get())

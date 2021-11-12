@@ -63,7 +63,6 @@ class DialogControl(private val context: Context) {
         if (autoClose != -1L) {
             view.setOnTouchListener { _, e ->
                 if (e.action == MotionEvent.ACTION_UP || e.action == MotionEvent.ACTION_DOWN) {
-                    Log.v("dzq","更新 delay")
                     view.delay(autoClose) {
                         dismissDialog(id)
                     }
