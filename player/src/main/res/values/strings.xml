@@ -2,4 +2,19 @@
 <resources>
     <string name="default_player_play_error">播放错误，点击重试</string>
     <string name="setting">设置</string>
+    <string name="speed">倍速</string>
+    <string name="size">尺寸</string>
+    <string name="x0_5">X0.5</string>
+    <string name="x1_00">X1.0</string>
+     <string name="x2_0">X2.0</string>
+    <string name="x3_0">X3.0</string>
+    <string name="rotation">旋转</string>
+    <string name="_0">0°</string>
+    <string name="_90">90°</string>
+    <string name="_180">180°</string>
+    <string name="_270">270°</string>
+    <string name="origin">原始</string>
+    <string name="normal">标准</string>
+    <string name="paved">铺满</string>
+    <string name="crop">裁剪</string>
 </resources>

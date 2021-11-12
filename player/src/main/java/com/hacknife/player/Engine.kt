@@ -69,7 +69,7 @@ abstract class Engine(callback1: MediaCallback, val url: Url) {
 
     abstract fun setSurface(surface: Surface)
 
-    abstract fun setVolume(leftVolume: Float, rightVolume: Float)
-
     abstract fun setSpeed(speed: Float)
+
+    abstract fun getSpeed(): Float
 }

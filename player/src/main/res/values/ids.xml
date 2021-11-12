@@ -23,4 +23,20 @@
     <item name="ivError" type="id" />
     <item name="tvError" type="id" />
     <item name="ivRotate" type="id" />
+    <item name="tvSpeed05" type="id" />
+    <item name="tvSpeed10" type="id" />
+    <item name="tvSpeed20" type="id" />
+    <item name="tvSpeed30" type="id" />
+    <item name="tvRotation0" type="id" />
+    <item name="ivRotation0" type="id" />
+    <item name="tvRotation90" type="id" />
+    <item name="ivRotation90" type="id" />
+    <item name="tvRotation180" type="id" />
+    <item name="ivRotation180" type="id" />
+    <item name="tvRotation270" type="id" />
+    <item name="ivRotation270" type="id" />
+    <item name="tvSizeOrigin" type="id" />
+    <item name="tvSizeNormal" type="id" />
+    <item name="tvSizeFit" type="id" />
+    <item name="tvSizeCrop" type="id" />
 </resources>

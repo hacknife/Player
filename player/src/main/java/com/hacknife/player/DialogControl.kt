@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.*
 import com.hacknife.player.compat.delay
 import kotlinx.android.synthetic.main.default_player_standard.*
+import java.lang.Exception
 
 /**
  * author : 段泽全(hacknife)
@@ -38,7 +39,10 @@ class DialogControl(private val context: Context) {
 
     fun dismissDialog(layoutRes: Int) {
         dialogSet.remove(layoutRes)?.let {
-            it.second.dismiss()
+            try {
+                it.second.dismiss()
+            } catch (e: Exception) {
+            }
         }
     }
 

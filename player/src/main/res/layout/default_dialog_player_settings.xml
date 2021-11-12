@@ -18,6 +18,245 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/setting"
             android:textColor="#fff"
-            android:textSize="14sp" />
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/speed"
+                android:textColor="#fff"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@id/tvSpeed05"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/x0_5"
+                android:textColor="@color/default_dialog_player_setting_selector"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@id/tvSpeed10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/x1_00"
+                android:textColor="@color/default_dialog_player_setting_selector"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@id/tvSpeed20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/x2_0"
+                android:textColor="@color/default_dialog_player_setting_selector"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@id/tvSpeed30"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/x3_0"
+                android:textColor="@color/default_dialog_player_setting_selector"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rotation"
+                android:textColor="#fff"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <TextView
+                    android:id="@id/tvRotation0"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/_0"
+                    android:textColor="@color/default_dialog_player_setting_selector"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@id/ivRotation0"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/default_dialog_player_setting_rotation_selector" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <TextView
+                    android:id="@id/tvRotation90"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/_90"
+                    android:textColor="@color/default_dialog_player_setting_selector"
+                    android:textSize="10sp" />
+
+                <ImageView
+                    android:id="@id/ivRotation90"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/default_dialog_player_setting_rotation_selector" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <TextView
+                    android:id="@id/tvRotation180"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/_180"
+                    android:textColor="@color/default_dialog_player_setting_selector"
+                    android:textSize="8sp" />
+
+                <ImageView
+                    android:id="@id/ivRotation180"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/default_dialog_player_setting_rotation_selector" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <TextView
+                    android:id="@id/tvRotation270"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/_270"
+                    android:textColor="@color/default_dialog_player_setting_selector"
+                    android:textSize="8sp" />
+
+                <ImageView
+                    android:id="@id/ivRotation270"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/default_dialog_player_setting_rotation_selector" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/size"
+                android:textColor="#fff"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@id/tvSizeOrigin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/origin"
+                android:textColor="@color/default_dialog_player_setting_selector"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@id/tvSizeNormal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/normal"
+                android:textColor="@color/default_dialog_player_setting_selector"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@id/tvSizeFit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/paved"
+                android:textColor="@color/default_dialog_player_setting_selector"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@id/tvSizeCrop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/crop"
+                android:textColor="@color/default_dialog_player_setting_selector"
+                android:textSize="14sp" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

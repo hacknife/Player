@@ -2,6 +2,7 @@ package com.hacknife.player
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import com.hacknife.player.compat.*
 import com.hacknife.player.touch.*
 
@@ -399,7 +400,94 @@ class DefaultPlayer(context: Context, attrs: AttributeSet?) : IPlayer(context, a
 
 
     override fun onDialogSettingShow() {
-        dialogControl.showDialog(R.layout.default_dialog_player_settings, 15000) {
+        dialogControl.showDialog(R.layout.default_dialog_player_settings, 8000) {
+            it.setSelected(R.id.tvRotation0, getDisplayRotation() == 0f)
+            it.setSelected(R.id.tvRotation90, getDisplayRotation() == 90f)
+            it.setSelected(R.id.tvRotation180, getDisplayRotation() == 180f)
+            it.setSelected(R.id.tvRotation270, getDisplayRotation() == 270f)
+            it.setSelected(R.id.ivRotation0, getDisplayRotation() == 0f)
+            it.setSelected(R.id.ivRotation90, getDisplayRotation() == 90f)
+            it.setSelected(R.id.ivRotation180, getDisplayRotation() == 180f)
+            it.setSelected(R.id.ivRotation270, getDisplayRotation() == 270f)
+
+            it.setSelected(R.id.tvSizeOrigin, getDisplayType() == SurfaceType.SCREEN_TYPE_ORIGINAL)
+            it.setSelected(R.id.tvSizeFit, getDisplayType() == SurfaceType.SCREEN_TYPE_FIT_XY)
+            it.setSelected(R.id.tvSizeCrop, getDisplayType() == SurfaceType.SCREEN_TYPE_CENTER_CROP)
+            it.setSelected(R.id.tvSizeNormal, getDisplayType() == SurfaceType.SCREEN_TYPE_NORMAL)
+
+            it.setSelected(R.id.tvSpeed05, getSpeed() == 0.5f)
+            it.setSelected(R.id.tvSpeed10, getSpeed() == 1.0f)
+            it.setSelected(R.id.tvSpeed20, getSpeed() == 2.0f)
+            it.setSelected(R.id.tvSpeed30, getSpeed() == 3.0f)
+
+
+            it.setClick(R.id.tvRotation0) {
+                setDisplayRotation(0f)
+                onDialogSettingShow()
+            }
+            it.setClick(R.id.tvRotation90) {
+                setDisplayRotation(90f)
+                onDialogSettingShow()
+            }
+            it.setClick(R.id.tvRotation180) {
+                setDisplayRotation(18f)
+                onDialogSettingShow()
+            }
+            it.setClick(R.id.tvRotation270) {
+                setDisplayRotation(270f)
+                onDialogSettingShow()
+            }
+            it.setClick(R.id.ivRotation0) {
+                setDisplayRotation(0f)
+                onDialogSettingShow()
+            }
+            it.setClick(R.id.ivRotation90) {
+                setDisplayRotation(90f)
+                onDialogSettingShow()
+            }
+            it.setClick(R.id.ivRotation180) {
+                setDisplayRotation(180f)
+                onDialogSettingShow()
+            }
+            it.setClick(R.id.ivRotation270) {
+                setDisplayRotation(270f)
+                onDialogSettingShow()
+            }
+
+
+            it.setClick(R.id.tvSizeOrigin) {
+                setDisplayType(SurfaceType.SCREEN_TYPE_ORIGINAL)
+                onDialogSettingShow()
+            }
+            it.setClick(R.id.tvSizeFit) {
+                setDisplayType(SurfaceType.SCREEN_TYPE_FIT_XY)
+                onDialogSettingShow()
+            }
+            it.setClick(R.id.tvSizeCrop) {
+                setDisplayType(SurfaceType.SCREEN_TYPE_CENTER_CROP)
+                onDialogSettingShow()
+            }
+            it.setClick(R.id.tvSizeNormal) {
+                setDisplayType(SurfaceType.SCREEN_TYPE_NORMAL)
+                onDialogSettingShow()
+            }
+
+            it.setClick(R.id.tvSpeed05) {
+                setSpeed(0.5f)
+                onDialogSettingShow()
+            }
+            it.setClick(R.id.tvSpeed10) {
+                setSpeed(1f)
+                onDialogSettingShow()
+            }
+            it.setClick(R.id.tvSpeed20) {
+                setSpeed(2f)
+                onDialogSettingShow()
+            }
+            it.setClick(R.id.tvSpeed30) {
+                setSpeed(3f)
+                onDialogSettingShow()
+            }
 
         }
     }

@@ -92,15 +92,14 @@ class DefaultEngine(callback: MediaCallback, url: Url) :
         mediaPlayer.setSurface(surface)
     }
 
-    override fun setVolume(leftVolume: Float, rightVolume: Float) {
-        mediaPlayer.setVolume(leftVolume, rightVolume)
-    }
 
     override fun setSpeed(speed: Float) {
         val pp = mediaPlayer.playbackParams
         pp.speed = speed
         mediaPlayer.playbackParams = pp
     }
+
+    override fun getSpeed(): Float = mediaPlayer.playbackParams.speed
 
     override fun onSeekComplete(mp: MediaPlayer) {
         runMain { callback.get().onSeekComplete() }

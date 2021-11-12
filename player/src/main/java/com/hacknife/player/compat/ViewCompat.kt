@@ -71,6 +71,10 @@ fun View.setSelected(id: Int, value: Boolean) {
     findViewById<View>(id)?.isSelected = value
 }
 
+fun View.setClick(id: Int, call: () -> Unit) {
+    findViewById<View>(id)?.setOnClickListener { call.invoke() }
+}
+
 fun View.delay(time: Long, call: (() -> Unit)) {
     this.setTag(R.id.view_delay, System.currentTimeMillis() + time)
     this.postDelayed({

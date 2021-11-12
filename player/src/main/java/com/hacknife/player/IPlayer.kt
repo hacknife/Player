@@ -257,6 +257,18 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
 
     fun getDisplayType() = surface.getType()
 
+    fun setSpeed(speed: Float) {
+        if (state.get() >= State.PLAYER_STATE_PREPARED) {
+            engine.get().setSpeed(speed)
+        }
+    }
+
+    fun getSpeed(): Float {
+        return if (state.get() >= State.PLAYER_STATE_PREPARED) {
+            getFloat { engine.get().getSpeed() }
+        } else 1f
+    }
+
     private fun directPlay() {
         engine.get().start()
     }

@@ -27,3 +27,10 @@ fun getLong(call: (() -> Long)): Long {
         1L
     }
 }
+fun getFloat(call: (() -> Float)): Float {
+    return try {
+        call.invoke()
+    } catch (e: Exception) {
+        1f
+    }
+}
