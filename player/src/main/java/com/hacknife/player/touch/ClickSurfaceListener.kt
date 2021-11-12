@@ -38,7 +38,7 @@ class ClickSurfaceListener(private val uiCallback: UiCallback) : ClickPlayerList
                 }
                 togglePlaying = true
                 it.delay(DURATION_TOGGLE) {
-                    if (togglePlaying) {
+                    if (togglePlaying && uiCallback.state() == State.PLAYER_STATE_PLAYING) {
                         uiCallback.onStateChangeToPlaying()
                         intervalTimer.clear()
                         togglePlaying = false
@@ -61,7 +61,7 @@ class ClickSurfaceListener(private val uiCallback: UiCallback) : ClickPlayerList
                     uiCallback.view().setSeek(R.id.sbProgress, uiCallback.getCurDuration().toInt())
                 }
                 it.delay(DURATION_TOGGLE) {
-                    if (togglePause) {
+                    if (togglePause && uiCallback.state() == State.PLAYER_STATE_PAUSE) {
                         uiCallback.onStateChangeToPause()
                         intervalTimer.clear()
                         togglePause = false

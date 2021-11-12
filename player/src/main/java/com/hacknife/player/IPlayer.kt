@@ -33,6 +33,7 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
     private val engine = Wrapper<Engine>()
     private val previousPlayer = Wrapper<IPlayer>()
     private val surface = SurfaceView(context)
+    private var seekOnPlaying = false
     private var url: Url? = null
     private val audioFocusChangeListener = AudioManager.OnAudioFocusChangeListener { }
     protected val mediaCallback: MediaCallback = object : MediaCallback {
@@ -41,7 +42,7 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
         }
 
         override fun onSeekComplete() {
-            state.set(if (isPlaying()) State.PLAYER_STATE_PLAYING else State.PLAYER_STATE_PAUSE)
+            state.set(if (seekOnPlaying) State.PLAYER_STATE_PLAYING else State.PLAYER_STATE_PAUSE)
         }
 
         override fun onPreparing() {
@@ -90,21 +91,23 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
         override fun state() = this@IPlayer.state.get()
     }
     protected val uiCallback: UiCallback = object : UiCallback {
-        override fun onStateChangeToNormal() = this@IPlayer.stateChangTo(State.PLAYER_STATE_NORMAL)
+        override fun onStateChangeToNormal() = this@IPlayer.state.set(State.PLAYER_STATE_NORMAL)
         override fun onStateChangeToPreparing() =
-            this@IPlayer.stateChangTo(State.PLAYER_STATE_PREPARING)
+            this@IPlayer.state.set(State.PLAYER_STATE_PREPARING)
 
         override fun onStateChangeToPrepared() =
-            this@IPlayer.stateChangTo(State.PLAYER_STATE_PREPARED)
+            this@IPlayer.state.set(State.PLAYER_STATE_PREPARED)
 
-        override fun onStateChangeToPlaying() =
-            this@IPlayer.stateChangTo(State.PLAYER_STATE_PLAYING)
+        override fun onStateChangeToPlaying() {
+            this@IPlayer.state.set(State.PLAYER_STATE_PLAYING)
+        }
+
 
         override fun onStateChangeToPlayComplete() =
-            this@IPlayer.stateChangTo(State.PLAYER_STATE_PLAY_COMPLETE)
+            this@IPlayer.state.set(State.PLAYER_STATE_PLAY_COMPLETE)
 
-        override fun onStateChangeToPause() = this@IPlayer.stateChangTo(State.PLAYER_STATE_PAUSE)
-        override fun onStateChangeToError() = this@IPlayer.stateChangTo(State.PLAYER_STATE_ERROR)
+        override fun onStateChangeToPause() = this@IPlayer.state.set(State.PLAYER_STATE_PAUSE)
+        override fun onStateChangeToError() = this@IPlayer.state.set(State.PLAYER_STATE_ERROR)
         override fun onStateChangeToPlayingToggle() =
             this@IPlayer.onStateChangeToPlayingToggle(mode.get())
 
@@ -139,7 +142,7 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
         override fun context() = this@IPlayer.context!!
         override fun layoutParams() = this@IPlayer.layoutParams as FrameLayout.LayoutParams
         override fun view() = this@IPlayer
-        override fun seekTo(seek: Long) = this@IPlayer.engine.get().seekTo(seek)
+        override fun seekTo(seek: Long) = this@IPlayer.seekTo(seek)
         override fun getCurDuration() = getLong { this@IPlayer.engine.get().getCurDuration() }
         override fun getTotalDuration() = getLong { this@IPlayer.engine.get().getTotalDuration() }
         override fun mode() = this@IPlayer.mode.get()
@@ -261,6 +264,11 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
         if (state.get() >= State.PLAYER_STATE_PREPARED) {
             engine.get().setSpeed(speed)
         }
+    }
+
+    fun seekTo(seek: Long) {
+        this.seekOnPlaying = isPlaying()
+        this.engine.get().seekTo(seek)
     }
 
     fun getSpeed(): Float {
