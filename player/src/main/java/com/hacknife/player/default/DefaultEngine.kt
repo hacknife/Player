@@ -7,6 +7,7 @@ import android.view.Surface
 import com.hacknife.player.*
 import com.hacknife.player.callback.MediaCallback
 import com.hacknife.player.compat.mainHandler
+import com.hacknife.player.compat.runMain
 import com.hacknife.player.compat.value
 
 /**
@@ -24,25 +25,21 @@ class DefaultEngine(callback: MediaCallback, url: Url) :
     MediaPlayer.OnErrorListener, MediaPlayer.OnInfoListener,
     MediaPlayer.OnVideoSizeChangedListener {
     private val mediaPlayer = MediaPlayer()
- 
-
-    override fun preloading() {
-
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
-        mediaPlayer.isLooping = url.isLoop()
-        mediaPlayer.setOnPreparedListener(this)
-        mediaPlayer.setOnCompletionListener(this)
-        mediaPlayer.setOnBufferingUpdateListener(this)
-        mediaPlayer.setScreenOnWhilePlaying(true)
-        mediaPlayer.setOnSeekCompleteListener(this)
-        mediaPlayer.setOnErrorListener(this)
-        mediaPlayer.setOnInfoListener(this)
-        mediaPlayer.setOnVideoSizeChangedListener(this)
-    }
 
     override fun prepare() {
         try {
-            mainHandler.post { callback.get().onPreparing() }
+            runMain { callback.get().onPreparing() }
+            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
+            mediaPlayer.isLooping = url.isLoop()
+            mediaPlayer.setOnPreparedListener(this)
+            mediaPlayer.setOnCompletionListener(this)
+            mediaPlayer.setOnBufferingUpdateListener(this)
+            mediaPlayer.setScreenOnWhilePlaying(true)
+            mediaPlayer.setOnSeekCompleteListener(this)
+            mediaPlayer.setOnErrorListener(this)
+            mediaPlayer.setOnInfoListener(this)
+            mediaPlayer.setOnVideoSizeChangedListener(this)
+
             val clazz: Class<MediaPlayer> = MediaPlayer::class.java
             val method = clazz.getDeclaredMethod(
                 "setDataSource",
@@ -58,25 +55,25 @@ class DefaultEngine(callback: MediaCallback, url: Url) :
             mediaPlayer.prepareAsync()
         } catch (e: Exception) {
             e.printStackTrace()
-            mainHandler.post { callback.get().onError(0, 0) }
+            runMain { callback.get().onError(0, 0) }
         }
     }
 
     override fun start() {
         mediaPlayer.start()
-        mainHandler.post { callback.get().onPlaying() }
+        runMain { callback.get().onPlaying() }
     }
 
     override fun pause() {
         mediaPlayer.pause()
-        mainHandler.post { callback.get().onPause() }
+        runMain { callback.get().onPause() }
     }
 
     override fun isPlaying() = mediaPlayer.isPlaying
 
     override fun seekTo(time: Long) {
         try {
-            mainHandler.post { callback.get().onPreparing() }
+            runMain { callback.get().onPreparing() }
             mediaPlayer.seekTo(time.toInt())
         } catch (e: IllegalStateException) {
             e.printStackTrace()
@@ -84,7 +81,7 @@ class DefaultEngine(callback: MediaCallback, url: Url) :
     }
 
     override fun release() {
-        mainHandler.post { callback.get().onRelease() }
+        runMain { callback.get().onRelease() }
         mediaPlayer.release()
     }
 
@@ -106,20 +103,20 @@ class DefaultEngine(callback: MediaCallback, url: Url) :
     }
 
     override fun onSeekComplete(mp: MediaPlayer) {
-        mainHandler.post { callback.get().onSeekComplete() }
+        runMain { callback.get().onSeekComplete() }
     }
 
     override fun onPrepared(mp: MediaPlayer?) {
-        mainHandler.post { callback.get().onPrepared() }
+        runMain { callback.get().onPrepared() }
         start()
     }
 
     override fun onCompletion(mp: MediaPlayer?) {
-        mainHandler.post { callback.get().onPlayCompletion() }
+        runMain { callback.get().onPlayCompletion() }
     }
 
     override fun onBufferingUpdate(mp: MediaPlayer?, percent: Int) {
-        mainHandler.post {
+        runMain {
             callback.get().onBufferingUpdate((percent * 0.01f * mediaPlayer.duration).toInt())
         }
     }
@@ -143,7 +140,7 @@ class DefaultEngine(callback: MediaCallback, url: Url) :
     }
 
     override fun onVideoSizeChanged(mp: MediaPlayer?, width: Int, height: Int) {
-        callback.get().let { mainHandler.post { it.onVideoSizeChanged(width, height) } }
+        callback.get().let { runMain { it.onVideoSizeChanged(width, height) } }
     }
 
 

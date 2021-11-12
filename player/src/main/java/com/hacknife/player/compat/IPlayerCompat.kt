@@ -25,10 +25,7 @@ fun IPlayer.bindSurface(engine: Engine, texture: SurfaceView) {
     playerSurface.removeAllViews()
     texture.surfaceTextureListener = object : TextureView.SurfaceTextureListener {
         override fun onSurfaceTextureAvailable(st: SurfaceTexture, i: Int, i2: Int) {
-            if (engine.callback.get().state() < State.PLAYER_STATE_PREPARING) {
-                engine.preloading()
-                engine.prepare()
-            }
+            if (engine.callback.get().state() < State.PLAYER_STATE_PREPARING) engine.prepare()
             engine.setSurface(Surface(st))
         }
 

@@ -26,8 +26,9 @@ import com.hacknife.player.default.DefaultThumbnailLoader
  */
 
 val mainHandler by lazy { Handler(Looper.getMainLooper()) }
+fun runMain(call: () -> Unit) = mainHandler.post { call.invoke() }
 val activityLifecycleCallbacks = ArrayList<Pair<Activity, Application.ActivityLifecycleCallbacks>>()
-val engineContainer = hashMapOf<String, Engine >()
+val engineContainer = hashMapOf<String, Engine>()
 var registeredApplicationLifecycleCallbacks = false
 val applicationLifecycleCallbacks = object :
     Application.ActivityLifecycleCallbacks {

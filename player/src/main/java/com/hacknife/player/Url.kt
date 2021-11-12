@@ -1,6 +1,5 @@
 package com.hacknife.player
 
-import android.icu.text.CaseMap
 import android.os.Bundle
 
 /**
@@ -10,6 +9,7 @@ import android.os.Bundle
  * project : IPlayer
  */
 class Url {
+
     companion object {
         private const val DEFAULT_KEY = "DEFAULT_KEY"
         fun fromBundle(bundle: Bundle): Url {
@@ -24,12 +24,25 @@ class Url {
         }
     }
 
+    constructor()
+    constructor(dataSource: Any,title: String,thumbnail: String):this(dataSource,title,thumbnail,false)
+    constructor(dataSource: Any, title: String, thumbnail: String, isLoop: Boolean) : this() {
+        this.headers = hashMapOf()
+        this.dataSource = hashMapOf()
+        this.title = title
+        this.thumbnail = thumbnail
+        this.currentKey = DEFAULT_KEY
+        this.isLoop = isLoop
+        this.dataSource!![this.currentKey!!] = dataSource
+    }
+
     private var headers: HashMap<String, String>? = null
     private var title: String? = null
     private var thumbnail: String? = null
     private var dataSource: HashMap<String, Any>? = null
     private var currentKey: String? = "DEFAULT_KEY"
     private var isLoop: Boolean? = false
+
 
     class Builder {
         private val url = Url()
@@ -59,16 +72,23 @@ class Url {
         }
 
         fun dataSource(source: Any): Builder {
+            if (url.dataSource!!.containsKey(DEFAULT_KEY)) throw IllegalStateException("This method can only be called once")
             url.dataSource!![DEFAULT_KEY] = source
             return this
         }
 
         fun dataSource(key: String, source: Any): Builder {
+            if (url.dataSource!!.containsKey(DEFAULT_KEY)) throw IllegalStateException("The key already exists")
             url.dataSource!![key] = source
             return this
         }
 
-        fun build() = url
+        fun build(): Url {
+            url.currentKey = url.dataSource?.entries?.first()?.key
+            if (url.currentKey == null) throw IllegalStateException("currentKey is null")
+            if (url.dataSource!!.entries.isEmpty()) throw IllegalStateException("DataSource is null")
+            return url
+        }
     }
 
     fun getHeader() = headers ?: hashMapOf()

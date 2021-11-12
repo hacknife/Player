@@ -14,8 +14,6 @@ import com.hacknife.player.compat.engineContainer
  */
 abstract class Engine(callback1: MediaCallback, val url: Url) {
     val callback = Wrapper(callback1) { o, _ -> reDrive(o?.state() ?: State.PLAYER_STATE_NORMAL) }
-
-
     private fun reDrive(state: State) {
         when (state) {
             State.PLAYER_STATE_NORMAL -> {
@@ -52,10 +50,6 @@ abstract class Engine(callback1: MediaCallback, val url: Url) {
             }
         }
     }
-
-
-
-    abstract fun preloading()
 
     abstract fun prepare()
 

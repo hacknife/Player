@@ -35,7 +35,6 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
     private val surface = SurfaceView(context)
     private var url: Url? = null
     private val audioFocusChangeListener = AudioManager.OnAudioFocusChangeListener { }
-
     protected val mediaCallback: MediaCallback = object : MediaCallback {
         override fun onSeek() {
             state.set(State.PLAYER_STATE_PREPARING)
@@ -73,6 +72,7 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
 
         override fun onError(what: Int, extra: Int) {
             state.set(State.PLAYER_STATE_ERROR)
+            clickPlayerSurface.clear()
         }
 
         override fun onRelease() {
@@ -160,7 +160,6 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
         override fun isUsed() =
             this@IPlayer.engine.get().callback.get() == this@IPlayer.mediaCallback
     }
-
     protected abstract val clickZoomButton: ClickPlayerListener
     protected abstract val clickWindowButton: ClickPlayerListener
     protected abstract val clickErrorButton: ClickPlayerListener
@@ -194,7 +193,6 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
             enableWindow = true
             surface.type = SurfaceType.SCREEN_TYPE_NORMAL
         }
-
     }
 
     fun setMode(mode: Mode) {
@@ -252,7 +250,6 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
     }
 
     fun getDisplayType() = surface.type!!
-
 
     private fun directPlay() {
         engine.get().start()
@@ -346,7 +343,6 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
             State.PLAYER_STATE_RELEASE -> onStateChangeToRelease(mode.get())
         }
     }
-
 
     protected abstract fun layoutResource(): Int
     protected abstract fun createIPlayer(): IPlayer
