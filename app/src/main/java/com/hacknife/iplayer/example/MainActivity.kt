@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
             .Builder()
             .dataSource(assets.openFd("source.mp4"))
             .title("源文件")
+            .isLoop(true)
             .build()
         player.setDataSource(url)
     }

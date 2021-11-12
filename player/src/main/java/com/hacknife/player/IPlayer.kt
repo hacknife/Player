@@ -84,7 +84,7 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
         }
 
         override fun onVideoSizeChanged(width: Int, height: Int) {
-            this@IPlayer.surface.size = Size(width, height)
+            this@IPlayer.surface.setSize(Size(width, height))
         }
 
         override fun state() = this@IPlayer.state.get()
@@ -129,6 +129,9 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
         override fun onFinishInBrightness(rise: Boolean, seek: Int, max: Int) =
             this@IPlayer.onFinishInBrightness(rise, seek, max)
 
+        override fun onDialogSettingShow() = this@IPlayer.onDialogSettingShow()
+        override fun onDialogSettingDismiss() = this@IPlayer.onDialogSettingDismiss()
+
         override fun isUsed() = engine.get().callback.get() == mediaCallback
         override fun state() = state.get()
         override fun play() = this@IPlayer.play()
@@ -144,12 +147,14 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
         override fun height() = this@IPlayer.height
         override fun previousPlayer() = this@IPlayer.previousPlayer.getOrNull()
     }
+
+
     protected val createCallback: CreateCallback = object : CreateCallback {
         override fun context() = this@IPlayer.context
         override fun createPlayer() = this@IPlayer.createIPlayer().let { it to it.createCallback }
         override fun switchPlayer(player: IPlayer) = this@IPlayer.switchPlayer(player)
         override fun getCurrentPlayer() = this@IPlayer
-        override fun getCurrentVideoSize() = this@IPlayer.surface.size
+        override fun getCurrentVideoSize() = this@IPlayer.surface.getSize()
         override fun getPreviousPlayer() =
             this@IPlayer.previousPlayer.getOrNull()?.let { it to it.createCallback }
 
@@ -166,6 +171,7 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
     protected abstract val clickRotateButton: ClickPlayerListener
     protected abstract val clickPlayerSurface: ClickPlayerListener
     protected abstract val clickPlayButton: ClickPlayerListener
+    protected abstract val touchSettingButton: OnTouchListener
     protected abstract val touchPlayerSurface: OnTouchListener
     protected abstract val seekDuration: SeekBar.OnSeekBarChangeListener
     protected var enableEnlarge: Boolean
@@ -178,10 +184,10 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
             enableEnlarge = ta.getBoolean(R.styleable.IPlayer_enableEnlarge, true)
             enableWindow = ta.getBoolean(R.styleable.IPlayer_enableWindow, true)
             when (ta.getInt(R.styleable.IPlayer_display, 1)) {
-                0 -> surface.type = SurfaceType.SCREEN_TYPE_ORIGINAL
-                1 -> surface.type = SurfaceType.SCREEN_TYPE_NORMAL
-                2 -> surface.type = SurfaceType.SCREEN_TYPE_CENTER_CROP
-                3 -> surface.type = SurfaceType.SCREEN_TYPE_FIT_XY
+                0 -> surface.setType(SurfaceType.SCREEN_TYPE_ORIGINAL)
+                1 -> surface.setType(SurfaceType.SCREEN_TYPE_NORMAL)
+                2 -> surface.setType(SurfaceType.SCREEN_TYPE_CENTER_CROP)
+                3 -> surface.setType(SurfaceType.SCREEN_TYPE_FIT_XY)
             }
             when (ta.getInt(R.styleable.IPlayer_mode, 0)) {
                 0 -> mode.set(Mode.NORMAL)
@@ -191,7 +197,7 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
         } else {
             enableEnlarge = true
             enableWindow = true
-            surface.type = SurfaceType.SCREEN_TYPE_NORMAL
+            surface.setType(SurfaceType.SCREEN_TYPE_NORMAL)
         }
     }
 
@@ -246,10 +252,10 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
     fun getDisplayRotation() = surface.rotation
 
     fun setDisplayType(mode: SurfaceType) {
-        surface.type = mode
+        surface.setType(mode)
     }
 
-    fun getDisplayType() = surface.type!!
+    fun getDisplayType() = surface.getType()
 
     private fun directPlay() {
         engine.get().start()
@@ -274,8 +280,8 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
         bundle.putInt("DISPLAY_TYPE", getDisplayType().value)
         bundle.putFloat("DISPLAY_ROTATION", getDisplayRotation())
         bundle.putBoolean("IS_PLAYING", isPlaying())
-        bundle.putInt("DISPLAY_SIZE_WIDTH", surface.size.width)
-        bundle.putInt("DISPLAY_SIZE_HEIGHT", surface.size.height)
+        bundle.putInt("DISPLAY_SIZE_WIDTH", surface.getSize().width)
+        bundle.putInt("DISPLAY_SIZE_HEIGHT", surface.getSize().height)
         return bundle
     }
 
@@ -295,7 +301,7 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
         setDisplayRotation(displayRotation)
         val width = bunlde.getInt("DISPLAY_SIZE_WIDTH")
         val height = bunlde.getInt("DISPLAY_SIZE_HEIGHT")
-        surface.size = Size(width, height)
+        surface.setSize(Size(width, height))
         bunlde.getBundle("URL_BUNDLE")?.let {
             this.url = Url.fromBundle(it)
             setText(R.id.tvTitle, url!!.getTitle())
@@ -330,6 +336,7 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
     }
 
     private fun stateChangTo(value: State) {
+        Log.v("dzq", "$value")
         when (value) {
             State.PLAYER_STATE_NORMAL -> onStateChangeToNormal(mode.get())
             State.PLAYER_STATE_PREPARING -> onStateChangeToPreparing(mode.get())
@@ -362,5 +369,6 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
     protected abstract fun onFinishInVolume(rise: Boolean, seek: Int, max: Int)
     protected abstract fun onChangeInBrightness(rise: Boolean, seek: Int, max: Int)
     protected abstract fun onFinishInBrightness(rise: Boolean, seek: Int, max: Int)
-
+    protected abstract fun onDialogSettingShow()
+    protected abstract fun onDialogSettingDismiss()
 }

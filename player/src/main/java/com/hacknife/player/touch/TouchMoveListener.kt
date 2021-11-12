@@ -16,7 +16,7 @@ import kotlin.math.roundToInt
  * desc   : MVVM
  * version: 1.0
  */
-class TouchMove(private val uiCallback: UiCallback) : TouchGesture {
+class TouchMoveListener(private val uiCallback: UiCallback) : TouchListener {
     private val contentView =
         uiCallback.context().getActivity()?.findViewById<ViewGroup>(Window.ID_ANDROID_CONTENT)
     private val params = uiCallback.layoutParams()

@@ -10,25 +10,29 @@ import com.hacknife.player.compat.getBrightness
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
-class TouchFull(
+class TouchFullListener(
     private val uiCallback: UiCallback
-) : TouchGesture {
+) : TouchListener {
     companion object {
         private const val OFFSET = 20
     }
 
     private val change: ((TouchMode, Boolean, Int, Int) -> Unit) = { mode, rise, value, max ->
+        uiCallback.onDialogSettingDismiss()
         when (mode) {
             TouchMode.VOLUME -> {
                 display.setVolume(value)
                 uiCallback.onChangeInVolume(rise, value, max)
+
             }
             TouchMode.BRIGHTNESS -> {
                 display.setBrightness(value)
                 uiCallback.onChangeInBrightness(rise, value, max)
+
             }
             TouchMode.DURATION -> {
                 uiCallback.onChangeInDuration(rise, value, max)
+
             }
             else -> {
             }
@@ -39,14 +43,17 @@ class TouchFull(
             TouchMode.VOLUME -> {
                 display.setVolume(value)
                 uiCallback.onFinishInVolume(rise, value, max)
+
             }
             TouchMode.BRIGHTNESS -> {
                 display.setBrightness(value)
                 uiCallback.onFinishInBrightness(rise, value, max)
+
             }
             TouchMode.DURATION -> {
                 uiCallback.seekTo(value.toLong())
                 uiCallback.onFinishInDuration(rise, value, max)
+
             }
             else -> {
             }

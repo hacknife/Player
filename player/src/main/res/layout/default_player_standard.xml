@@ -58,7 +58,7 @@
             android:layout_width="?android:attr/actionBarSize"
             android:layout_height="?android:attr/actionBarSize"
             android:padding="18dp"
-            android:src="@drawable/default_player_title_bar_more" />
+            android:src="@drawable/default_player_title_bar_setting" />
 
         <ImageView
             android:id="@id/ivWindow"

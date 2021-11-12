@@ -9,6 +9,6 @@ import android.view.MotionEvent
  * desc   : MVVM
  * version: 1.0
  */
-interface TouchGesture {
+interface TouchListener {
     fun onTouch(e: MotionEvent, width: Int, height: Int)
 }

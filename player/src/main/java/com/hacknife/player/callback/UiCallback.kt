@@ -31,6 +31,9 @@ interface UiCallback {
     fun onFinishInVolume(rise: Boolean, seek: Int, max: Int)
     fun onChangeInBrightness(rise: Boolean, seek: Int, max: Int)
     fun onFinishInBrightness(rise: Boolean, seek: Int, max: Int)
+    fun onDialogSettingShow()
+    fun onDialogSettingDismiss()
+
     fun isUsed(): Boolean
     fun state(): State
     fun play()

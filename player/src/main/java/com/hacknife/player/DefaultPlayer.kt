@@ -22,7 +22,8 @@ class DefaultPlayer(context: Context, attrs: AttributeSet?) : IPlayer(context, a
     override val clickRotateButton = ClickRotateListener(uiCallback)
     override val clickPlayerSurface = ClickSurfaceListener(uiCallback)
     override val clickPlayButton = ClickPlayListener(uiCallback)
-    override val touchPlayerSurface = TouchPlayer(uiCallback)
+    override val touchSettingButton = TouchSettingListener(uiCallback)
+    override val touchPlayerSurface = TouchPlayerListener(uiCallback)
     override val seekDuration = SeekDurationListener(uiCallback)
 
     init {
@@ -35,6 +36,7 @@ class DefaultPlayer(context: Context, attrs: AttributeSet?) : IPlayer(context, a
         bindClick(R.id.playerSurface, clickPlayerSurface)
         bindClick(R.id.ivError, clickErrorButton)
         bindClick(R.id.ivRotate, clickRotateButton)
+        bindTouch(R.id.ivSetting, touchSettingButton)
     }
 
     override fun layoutResource() = R.layout.default_player_standard
@@ -382,6 +384,7 @@ class DefaultPlayer(context: Context, attrs: AttributeSet?) : IPlayer(context, a
         dialogControl.dismissDialog(R.layout.default_dialog_player_volume)
     }
 
+
     override fun onChangeInBrightness(rise: Boolean, seek: Int, max: Int) {
         dialogControl.showDialog(R.layout.default_dialog_player_brightness) {
             it.setText(R.id.tvCurrent, "${((seek * 100f) / max).toInt()}%")
@@ -393,4 +396,16 @@ class DefaultPlayer(context: Context, attrs: AttributeSet?) : IPlayer(context, a
     override fun onFinishInBrightness(rise: Boolean, seek: Int, max: Int) {
         dialogControl.dismissDialog(R.layout.default_dialog_player_brightness)
     }
+
+
+    override fun onDialogSettingShow() {
+        dialogControl.showDialog(R.layout.default_dialog_player_settings, 15000) {
+
+        }
+    }
+
+    override fun onDialogSettingDismiss() {
+        dialogControl.dismissDialog(R.layout.default_dialog_player_settings)
+    }
+
 }

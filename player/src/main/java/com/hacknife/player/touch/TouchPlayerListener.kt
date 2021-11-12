@@ -1,6 +1,5 @@
 package com.hacknife.player.touch
 
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import com.hacknife.player.Mode
@@ -14,9 +13,9 @@ import com.hacknife.player.callback.UiCallback
  * desc   : MVVM
  * version: 1.0
  */
-class TouchPlayer(private val uiCallback: UiCallback) : View.OnTouchListener {
-    private val touchMove by lazy { TouchMove(uiCallback) }
-    private val touchFull by lazy { TouchFull(uiCallback) }
+class TouchPlayerListener(private val uiCallback: UiCallback) : View.OnTouchListener {
+    private val touchMove by lazy { TouchMoveListener(uiCallback) }
+    private val touchFull by lazy { TouchFullListener(uiCallback) }
 
 
     override fun onTouch(v: View?, event: MotionEvent): Boolean {

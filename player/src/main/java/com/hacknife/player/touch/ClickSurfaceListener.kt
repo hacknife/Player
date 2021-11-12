@@ -15,7 +15,7 @@ import com.hacknife.player.compat.toTime
  * desc   : MVVM
  * version: 1.0
  */
-class ClickSurfaceListener(private val uiCallback: UiCallback) :ClickPlayerListener {
+class ClickSurfaceListener(private val uiCallback: UiCallback) : ClickPlayerListener {
     companion object {
         private const val DURATION_SEEK_BAR = 1000L
         private const val DURATION_TOGGLE = 5000L
@@ -27,7 +27,7 @@ class ClickSurfaceListener(private val uiCallback: UiCallback) :ClickPlayerListe
 
     override fun onClick(it: View) {
         if (!uiCallback.isUsed()) return
-        if (uiCallback.state() == State.PLAYER_STATE_PLAYING) {
+         if (uiCallback.state() == State.PLAYER_STATE_PLAYING) {
             if (!togglePlaying) {
                 uiCallback.onStateChangeToPlayingToggle()
                 intervalTimer.interval(DURATION_SEEK_BAR) {

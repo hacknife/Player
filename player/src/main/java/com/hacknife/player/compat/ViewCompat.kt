@@ -60,19 +60,12 @@ fun IPlayer.bindClick(id: Int, listener: View.OnClickListener) {
 
 
 fun IPlayer.bindTouch(id: Int, listener: View.OnTouchListener) {
-    findViewById<View>(id)?.setOnTouchListener(object :View.OnTouchListener{
-        override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-            listener.onTouch(v, event)
-            return false
-        }
-    })
+    findViewById<View>(id)?.setOnTouchListener(listener)
 }
 
 fun View.bindSeekBar(id: Int, call: SeekDurationListener) {
     findViewById<SeekBar>(id)?.setOnSeekBarChangeListener(call)
 }
-
-
 
 fun View.setSelected(id: Int, value: Boolean) {
     findViewById<View>(id)?.isSelected = value
