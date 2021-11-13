@@ -8,10 +8,7 @@ import com.hacknife.player.Mode
 import com.hacknife.player.R
 import com.hacknife.player.State
 import com.hacknife.player.callback.CreateCallback
-import com.hacknife.player.compat.createFullScreenPlayerLayoutParams
-import com.hacknife.player.compat.getActivity
-import com.hacknife.player.compat.hideActionBar
-import com.hacknife.player.compat.showActionBar
+import com.hacknife.player.compat.*
 
 /**
  * author : 段泽全(hacknife)
@@ -38,6 +35,7 @@ class ClickZoomListener(private val previousPlayerCallback: CreateCallback) : Cl
                     it.release()
                 }
             context.hideActionBar()
+            context.keepScreenOn()
             val pair = previousPlayerCallback.createPlayer()
             val currentPlayer = pair.first
             currentPlayer.id = R.id.player_zoom_full
@@ -53,6 +51,7 @@ class ClickZoomListener(private val previousPlayerCallback: CreateCallback) : Cl
             contentView.findViewById<View>(R.id.player_zoom_full)
                 ?.let { contentView.removeView(it) }
             context.showActionBar()
+            context.clearScreenOn()
             val pair = previousPlayerCallback.getPreviousPlayer()
             if (pair == null) {
                 previousPlayerCallback.getCurrentPlayer().release()

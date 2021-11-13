@@ -120,6 +120,14 @@ fun Context.hideActionBar() {
     );
 }
 
+fun Context.keepScreenOn(){
+    getWindow()?.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+}
+
+fun Context.clearScreenOn(){
+    getWindow()?.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+}
+
 val Context.screenWidth: Int get() = resources.displayMetrics.widthPixels
 
 fun Context.registerApplicationLifecycle() {

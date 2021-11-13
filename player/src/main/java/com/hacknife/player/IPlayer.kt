@@ -229,11 +229,15 @@ abstract class IPlayer(context: Context, attrs: AttributeSet?) : FrameLayout(con
         if (url == null) throw IllegalArgumentException("url is null")
         if (state.get() == State.PLAYER_STATE_NORMAL || state.get() == State.PLAYER_STATE_ERROR) preparePlay() else directPlay()
         clickPlayerSurface.clear()
+        if (mode.get() == Mode.FULL)
+            keepScreenOn = true
     }
 
     fun pause() {
         engine.get().pause()
         clickPlayerSurface.clear()
+        if (mode.get() == Mode.FULL)
+            keepScreenOn = false
     }
 
     fun release() {
