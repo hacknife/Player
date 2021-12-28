@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hacknife.iplayer.example">
+    package="com.iwdael.iplayer.example">
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
@@ -8,7 +8,7 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.hacknife.iplayer.example.MainActivity">
+        <activity android:name="com.iwdael.iplayer.example.com.iwdael.iplayer.example.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

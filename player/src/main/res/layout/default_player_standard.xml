@@ -77,7 +77,7 @@
         android:src="@drawable/default_player_state_selector"
         tools:visibility="gone" />
 
-    <com.hacknife.loading.LoadingView
+    <com.iwdael.loading.LoadingView
         android:id="@id/ivLoading"
         android:layout_width="40dp"
         android:layout_height="40dp"

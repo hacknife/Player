@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.hacknife.iplay.example"
+        applicationId "com.iwdael.iplay.example"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
